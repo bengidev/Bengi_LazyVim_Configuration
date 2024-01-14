@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   --
   -- Configure notify plugin
@@ -7,8 +8,10 @@ return {
     name = "notify",
     config = function()
       require("notify").setup({
-        stages = "fade",
         background_colour = "#000000",
+        fps = 60,
+        render = "compact",
+        stages = "fade",
         timeout = 3000,
       })
     end,
