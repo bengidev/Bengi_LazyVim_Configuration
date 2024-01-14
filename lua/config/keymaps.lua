@@ -7,4 +7,6 @@ local map = vim.keymap.set
 
 -- Change into normal mode
 map("i", "jj", "<Esc>")
+map("i", "kk", "<Esc>")
 map("i", "jk", "<Esc>")
+map("i", "kj", "<Esc>")
