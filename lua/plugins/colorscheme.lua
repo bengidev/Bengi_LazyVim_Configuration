@@ -1,7 +1,6 @@
 return {
   --
   -- Configure catppuccin colorscheme
-  --
   {
     "catppuccin/nvim",
     name = "catppuccin",
