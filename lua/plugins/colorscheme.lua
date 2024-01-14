@@ -1,6 +1,7 @@
 return {
-
-  -- Add Catppuccin plugin
+  --
+  -- Configure catppuccin colorscheme
+  --
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -55,8 +56,9 @@ return {
       })
     end,
   },
-
-  -- Configure LazyVim to load Catppuccin colorscheme
+  --
+  -- Configure LazyVim to load gruvbox
+  --
   {
     "LazyVim/LazyVim",
     opts = {
