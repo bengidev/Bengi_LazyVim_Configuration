@@ -3,10 +3,19 @@
 -- Add any additional keymaps here
 
 -- Use map to aliases `vim.keymap.set`
-local map = vim.keymap.set
+local keymap = vim.keymap.set
+
+-- Use opts for mapping
+local opts = { noremap = true, silent = true }
 
 -- Change into normal mode
-map("i", "jj", "<Esc>")
-map("i", "kk", "<Esc>")
-map("i", "jk", "<Esc>")
-map("i", "kj", "<Esc>")
+keymap("i", "jj", "<Esc>")
+keymap("i", "kk", "<Esc>")
+keymap("i", "jk", "<Esc>")
+keymap("i", "kj", "<Esc>")
+
+-- Move text up and down
+keymap("x", "J", ":m '>+1<CR>gv=gv", opts)
+keymap("x", "K", ":m '<-2<CR>gv=gv", opts)
+keymap("x", "<M-j>", ":m '>+1<CR>gv=gv", opts)
+keymap("x", "<M-k>", ":m '<-2<CR>gv=gv", opts)
