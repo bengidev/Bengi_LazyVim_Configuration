@@ -1,4 +1,4 @@
-local utils = require("starter.utils")
+local utils = require("plugins.xcode.utilities")
 
 return {
   "stevearc/conform.nvim",

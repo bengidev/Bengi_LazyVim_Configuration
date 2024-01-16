@@ -31,7 +31,7 @@ return {
   config = function()
     local dap = require("dap")
     local xcodebuild = require("xcodebuild.dap")
-    local breakpoints = require("starter.plugins.nvim-dap.dap-remember-breakpoints")
+    local breakpoints = require("plugins.xcode.nvim-dap.dap-remember-breakpoints")
     local autogroup = vim.api.nvim_create_augroup("dap-breakpoints", { clear = true })
 
     vim.api.nvim_create_autocmd({ "VimEnter" }, {

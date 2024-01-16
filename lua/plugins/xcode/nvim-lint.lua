@@ -1,5 +1,5 @@
 ---@diagnostic disable: missing-fields
-local utils = require("starter.utils")
+local utils = require("plugins.xcode.utilities")
 
 return {
   "mfussenegger/nvim-lint",
