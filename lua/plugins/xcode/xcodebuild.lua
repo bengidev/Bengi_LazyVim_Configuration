@@ -1,68 +1,35 @@
 return {
-  "mfussenegger/nvim-dap",
+  "wojciech-kulik/xcodebuild.nvim",
   dependencies = {
-    "wojciech-kulik/xcodebuild.nvim",
+    "nvim-telescope/telescope.nvim",
+    "MunifTanjim/nui.nvim",
   },
   config = function()
-    local dap = require("dap")
-    local xcodebuild = require("xcodebuild.dap")
-
-    dap.configurations.swift = {
-      {
-        name = "iOS App Debugger",
-        type = "codelldb",
-        request = "attach",
-        program = xcodebuild.get_program_path,
-        cwd = "${workspaceFolder}",
-        stopOnEntry = false,
-        waitFor = true,
+    require("xcodebuild").setup({
+      logs = {
+        auto_open_on_success_tests = false,
+        auto_open_on_failed_tests = true,
+        auto_open_on_success_build = false,
+        auto_open_on_failed_build = true,
+        auto_focus = false,
+        auto_close_on_app_launch = true,
       },
-    }
-
-    dap.adapters.codelldb = {
-      type = "server",
-      port = "13000",
-      executable = {
-        -- TODO: make sure to set path to your codelldb
-        command = os.getenv("HOME") .. "/.local/share/codelldb-x86_64-darwin/extension/adapter/codelldb",
-        args = {
-          "--port",
-          "13000",
-          "--liblldb",
-          -- TODO: make sure that this path is correct on your machine
-          "/Applications/Xcode-15.2.0.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
-        },
+      code_coverage = {
+        enabled = true,
       },
-    }
+    })
 
-    -- nice breakpoint icons
-    local define = vim.fn.sign_define
-    define("DapBreakpoint", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
-    define("DapBreakpointRejected", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
-    define("DapStopped", { text = "", texthl = "DiagnosticOk", linehl = "", numhl = "" })
-    define("DapLogPoint", { text = "", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
-    define("DapLogPoint", { text = "", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
-
-    -- integration with xcodebuild.nvim
-    vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
-    vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build, { desc = "Debug Without Building" })
-
-    vim.keymap.set("n", "<leader>dc", dap.continue)
-    vim.keymap.set("n", "<leader>ds", dap.step_over)
-    vim.keymap.set("n", "<leader>di", dap.step_into)
-    vim.keymap.set("n", "<leader>do", dap.step_out)
-    vim.keymap.set("n", "<C-b>", dap.toggle_breakpoint)
-    vim.keymap.set("n", "<C-s-b>", function()
-      dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-    end)
-    vim.keymap.set("n", "<Leader>dx", function()
-      dap.terminate()
-      require("xcodebuild.actions").cancel()
-
-      local success, dapui = pcall(require, "dapui")
-      if success then
-        dapui.close()
-      end
-    end)
+    -- stylua: ignore start
+    vim.keymap.set("n", "<leader>xl", "<cmd>XcodebuildToggleLogs<cr>", { desc = "Toggle Xcodebuild Logs" })
+    vim.keymap.set("n", "<leader>xb", "<cmd>XcodebuildBuild<cr>", { desc = "Build Project" })
+    vim.keymap.set("n", "<leader>xr", "<cmd>XcodebuildBuildRun<cr>", { desc = "Build & Run Project" })
+    vim.keymap.set("n", "<leader>xt", "<cmd>XcodebuildTest<cr>", { desc = "Run Tests" })
+    vim.keymap.set("n", "<leader>xT", "<cmd>XcodebuildTestClass<cr>", { desc = "Run This Test Class" })
+    vim.keymap.set("n", "<leader>X", "<cmd>XcodebuildPicker<cr>", { desc = "Show All Xcodebuild Actions" })
+    vim.keymap.set("n", "<leader>xd", "<cmd>XcodebuildSelectDevice<cr>", { desc = "Select Device" })
+    vim.keymap.set("n", "<leader>xp", "<cmd>XcodebuildSelectTestPlan<cr>", { desc = "Select Test Plan" })
+    vim.keymap.set("n", "<leader>xc", "<cmd>XcodebuildToggleCodeCoverage<cr>", { desc = "Toggle Code Coverage" })
+    vim.keymap.set("n", "<leader>xC", "<cmd>XcodebuildShowCodeCoverageReport<cr>", { desc = "Show Code Coverage Report" })
+    vim.keymap.set("n", "<leader>xq", "<cmd>Telescope quickfix<cr>", { desc = "Show QuickFix List" })
   end,
 }
