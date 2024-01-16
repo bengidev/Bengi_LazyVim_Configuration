@@ -1,5 +1,40 @@
 ---@diagnostic disable: missing-fields
-local utils = require("plugins.xcode.utilities")
+local cachedConfig = {}
+local searchedForConfig = {}
+
+local function find_config(filename)
+  if searchedForConfig[filename] then
+    return cachedConfig[filename]
+  end
+
+  local configs = vim.fn.systemlist({
+    "find",
+    vim.fn.getcwd(),
+    "-maxdepth",
+    "2",
+    "-iname",
+    filename,
+    "-not",
+    "-path",
+    "*/.*/*",
+  })
+  searchedForConfig[filename] = true
+
+  if vim.v.shell_error ~= 0 then
+    return nil
+  end
+
+  table.sort(configs, function(a, b)
+    return a ~= "" and #a < #b
+  end)
+
+  if configs[1] then
+    cachedConfig[filename] = string.match(configs[1], "^%s*(.-)%s*$")
+  end
+
+  return cachedConfig[filename]
+end
+
 
 return {
   "mfussenegger/nvim-lint",
@@ -25,7 +60,7 @@ return {
         "--use-alternative-excluding",
         "--config",
         function()
-          return utils.find_config(".swiftlint.yml") or os.getenv("HOME") .. "/.config/nvim/.swiftlint.yml" -- change path if needed
+          return find_config(".swiftlint.yml") or os.getenv("HOME") .. "/.config/nvim/.swiftlint.yml" -- change path if needed
         end,
       },
       stream = "stdout",
