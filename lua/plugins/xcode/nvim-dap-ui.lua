@@ -7,6 +7,17 @@ return {
       controls = {
         element = "repl",
         enabled = true,
+        icons = {
+          disconnect = "󱐤",
+          run_last = "󰑙",
+          terminate = "",
+          pause = "󰏤",
+          play = "",
+          step_into = "󰆹",
+          step_out = "󰆸",
+          step_over = "󰆷",
+          step_back = "󰓕",
+        },
       },
       floating = {
         border = "single",
@@ -29,7 +40,6 @@ return {
         {
           elements = {
             { id = "repl", size = 1.0 },
-            -- { id = "console", size = 0.5 },
           },
           position = "bottom",
           size = 10,
