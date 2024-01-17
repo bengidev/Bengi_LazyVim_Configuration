@@ -35,7 +35,6 @@ local function find_config(filename)
   return cachedConfig[filename]
 end
 
-
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
