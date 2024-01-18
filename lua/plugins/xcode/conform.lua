@@ -40,7 +40,7 @@ return {
   keys = {
     -- Customize or remove this keymap to your liking
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-      conform.format({
+      require("conform").format({
         lsp_fallback = true,
         async = false,
         timeout_ms = 500,

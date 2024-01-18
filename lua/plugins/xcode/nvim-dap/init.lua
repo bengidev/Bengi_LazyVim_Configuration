@@ -1,4 +1,5 @@
 ---@diagnostic disable: duplicate-set-field
+
 local function setupListeners()
   local dap = require("dap")
 

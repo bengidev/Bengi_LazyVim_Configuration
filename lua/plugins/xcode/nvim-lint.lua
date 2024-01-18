@@ -1,4 +1,5 @@
 ---@diagnostic disable: missing-fields
+
 local cachedConfig = {}
 local searchedForConfig = {}
 

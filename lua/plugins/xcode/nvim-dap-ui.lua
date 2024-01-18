@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 return {
   "rcarriga/nvim-dap-ui",
   dependencies = { "mfussenegger/nvim-dap" },
