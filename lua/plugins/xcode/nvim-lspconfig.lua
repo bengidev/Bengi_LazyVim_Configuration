@@ -1,5 +1,6 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local opts = { noremap = true, silent = true }
+local util = require("lspconfig.util")
 
 return {
   "neovim/nvim-lspconfig",
@@ -10,8 +11,6 @@ return {
           "/Applications/Xcode-15.2.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
         },
         root_dir = function(filename, _)
-          local util = require("lspconfig.util")
-
           return util.root_pattern("buildServer.json")(filename)
             or util.root_pattern("*.xcodeproj", "*.xcworkspace")(filename)
             or util.find_git_ancestor(filename)
