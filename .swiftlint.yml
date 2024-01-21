@@ -37,7 +37,6 @@ opt_in_rules:
   - overridden_super_call
   - pattern_matching_keywords
   - prefer_zero_over_explicit_init
-  - prohibited_super_call
   - redundant_nil_coalescing
   - redundant_type_annotation
   - single_test_class
