@@ -48,7 +48,6 @@ opt_in_rules:
   - unneeded_parentheses_in_closure_argument
   - unused_declaration
   - unused_import
-  - vertical_whitespace_between_cases
   - yoda_condition
 
 excluded:
