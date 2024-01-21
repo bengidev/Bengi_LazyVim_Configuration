@@ -4,6 +4,7 @@ local utils = require("plugins.utils.shared")
 
 return {
   "stevearc/conform.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   keys = {
     -- Customize or remove this keymap to your liking
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()
