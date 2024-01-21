@@ -4,3 +4,6 @@
 
 -- Disable touchpad or mouse interactions.
 vim.opt.mouse = ""
+
+-- Remove the eol, as that will add the eol char, unless you want it.
+vim.cmd([[set listchars=space:·,eol:󱞣]])
