@@ -26,10 +26,7 @@ return {
         root_dir = function(filename, _)
           local util = require("lspconfig.util")
 
-          return util.root_pattern("*.xcodeproj", "*.xcworkspace")(filename)
-            or util.root_pattern("*.swift")(filename)
-            or util.root_pattern("Package.swift")(filename)
-            or util.find_git_ancestor(filename)
+          return util.root_pattern("*.swift")(filename) or util.find_git_ancestor(filename)
         end,
         capabilities = {
           require("cmp_nvim_lsp").default_capabilities(),
