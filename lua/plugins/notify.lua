@@ -12,7 +12,7 @@ return {
         fps = 60,
         render = "compact",
         stages = "fade",
-        timeout = 500,
+        timeout = 100,
       })
     end,
   },
