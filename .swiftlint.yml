@@ -2,11 +2,11 @@ disabled_rules:
   - opening_brace
   - todo
   - type_name
+  - attributes
   - notification_center_detachment
 
 opt_in_rules:
   - anyobject_protocol
-  - attributes
   - closure_end_indentation
   - closure_spacing
   - contains_over_filter_count
