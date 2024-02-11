@@ -1,8 +1,7 @@
-## File options
+ ## File options
 
  --exclude Pods
- --swiftversion 5.3
-
+ --swiftversion 5.9.2
 
  ## Enabled rules
 
