@@ -8,6 +8,7 @@ disabled_rules:
   - redundant_type_annotation
   - function_default_parameter_at_end
   - closure_end_indentation
+  - line_length
 
 opt_in_rules:
   - anyobject_protocol
@@ -79,13 +80,6 @@ identifier_name:
     - id
     - x
     - y
-
-line_length:
-  warning: 120
-  error: 120
-  ignores_function_declarations: true
-  ignores_comments: true
-  ignores_urls: true
 
 function_body_length:
   warning: 300
